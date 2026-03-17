@@ -1,57 +1,115 @@
 <!--
   EXAMPLE MCP SKILL — requires Microsoft 365 / WorkIQ access.
 
-  This file demonstrates how to wrap an MCP tool as a Claude Code skill.
-  If you don't have WorkIQ, use this as a reference pattern for your own
-  MCP integrations. See docs/mcp-integration.md for the general approach.
+  This file is sourced from the official microsoft/work-iq repo:
+  https://github.com/microsoft/work-iq/tree/main/plugins/workiq/skills/workiq
 
-  To adapt this pattern:
-  1. Replace `mcp__workiq__ask_work_iq` with your MCP tool name
-  2. Update the description to match your tool's purpose
-  3. Adjust the output rules to fit your use case
+  Use this file as a reference pattern for wrapping any MCP tool as a
+  Claude Code skill. See docs/mcp-integration.md for install steps and
+  the general pattern for adapting this to your own MCP tools.
 -->
 
 ---
 name: workiq
-description: Query Microsoft 365 work intelligence data via WorkIQ. Use when asking about work activity, collaboration patterns, meeting load, focus time, or any Microsoft 365 productivity insights. Requires Microsoft 365 / WorkIQ access.
+description: Query Microsoft 365 Copilot for workplace intelligence - emails, meetings, documents, Teams messages, and people information. USE THIS SKILL for ANY workplace-related question where the answer likely exists in Microsoft 365 data. This includes questions about what someone said, shared, or communicated; meetings, emails, messages, or documents; priorities, decisions, or context from colleagues; organizational knowledge; project status; team activities; or any information that would be in Outlook, Teams, SharePoint, OneDrive, or Calendar. When in doubt about workplace context, try WorkIQ first. Trigger phrases include "what did [person] say", "what are [person]'s priorities", "top of mind from [person]", "what was discussed", "find emails about", "what meetings", "what documents", "who is working on", "what's the status of", "any updates on", etc.
 user-invocable: true
 allowed-tools: mcp__workiq__ask_work_iq
-author: Claude Code Starter
-version: 1.0.0
-date: 2026-03-01
 ---
 
-# WorkIQ Chat
+# WorkIQ
 
-Query Microsoft 365 work data in plain language.
+WorkIQ connects Claude to Microsoft 365 Copilot, providing access to workplace intelligence grounded in organizational data, connected through Microsoft Graph, and personalized through memory and context.
 
-## Prerequisites
+## CRITICAL: When to Use This Skill
 
-This skill requires:
-- Microsoft 365 account
-- WorkIQ MCP server configured in your Claude Code settings
-- See `docs/mcp-integration.md` for setup instructions
+**USE WorkIQ for ANY workplace-related question.** If the answer might exist in Microsoft 365 data, try WorkIQ first.
 
-## When to Use
+**ALWAYS use WorkIQ when the user asks about:**
 
-Invoke when the user says:
-- "ask workiq [question]"
-- "check my work data"
-- "what does workiq say about..."
-- Any question about meetings, focus time, collaboration, or productivity patterns
+| User Question Pattern | Example | Action |
+|-----------------------|---------|--------|
+| What someone said/shared/communicated | "What did Rob say about X?" | `ask_work_iq` |
+| Someone's priorities/concerns/focus | "What's top of mind for Sarah?" | `ask_work_iq` |
+| Meeting content/decisions/action items | "What was decided in yesterday's meeting?" | `ask_work_iq` |
+| Email content or conversations | "Any emails from John about the deadline?" | `ask_work_iq` |
+| Teams messages or chats | "What did the team discuss about the release?" | `ask_work_iq` |
+| Document locations or content | "Where is the design doc?" | `ask_work_iq` |
+| Colleague expertise or ownership | "Who owns the billing system?" | `ask_work_iq` |
+| Calendar/schedule information | "What meetings do I have today?" | `ask_work_iq` |
+| Organizational context | "What are the team's Q1 goals?" | `ask_work_iq` |
+| Project status or updates | "What's the status of Project X?" | `ask_work_iq` |
+| Team activities or work | "What is the team working on?" | `ask_work_iq` |
+| Any workplace/work-related context | "Any updates I should know about?" | `ask_work_iq` |
 
-## Steps
+**DO NOT say "I don't have access to emails/meetings/messages"** — use WorkIQ instead.
 
-1. Pass the user's question to `mcp__workiq__ask_work_iq` — don't rephrase unless clarification is needed
-2. Return the result BLUF-first: bottom line in one sentence, then supporting detail
-3. Preserve structured data (tables, metrics, lists) as returned
-4. If WorkIQ returns nothing: say "WorkIQ returned no data for that query" — don't pad
-5. Don't narrate the tool call. Don't describe what you're doing. Return the answer.
+**When in doubt, use WorkIQ.** It's better to query and get no results than to miss workplace context.
+
+## Configuration
+
+Authentication is automatic with the connected user's Microsoft 365 credentials. See `docs/mcp-integration.md` for MCP server setup.
+
+## MCP Tool
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "<your question>" }` |
+
+## Common Use Cases
+
+### What Someone Is Thinking/Sharing
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "What are the latest top of mind from [name] I should be aware of?" }` |
+| `ask_work_iq` | `{ "question": "What has [name] been focused on lately?" }` |
+| `ask_work_iq` | `{ "question": "What concerns has my manager raised recently?" }` |
+
+### Find Experts and People
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "Who is the expert on [topic] in our team?" }` |
+| `ask_work_iq` | `{ "question": "Who should I talk to about [system]?" }` |
+| `ask_work_iq` | `{ "question": "Who worked on [feature]?" }` |
+
+### Retrieve Meeting Context
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "What decisions were made in my meeting last week about [topic]?" }` |
+| `ask_work_iq` | `{ "question": "Summarize the discussion from yesterday's [meeting name]" }` |
+| `ask_work_iq` | `{ "question": "What action items came out of [meeting]?" }` |
+
+### Find Emails and Messages
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "Any recent emails from [name] about [topic]?" }` |
+| `ask_work_iq` | `{ "question": "What did the team discuss in Teams about [topic]?" }` |
+| `ask_work_iq` | `{ "question": "Summarize my unread messages from today" }` |
+
+### Locate Documents
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "Find the design doc for [project]" }` |
+| `ask_work_iq` | `{ "question": "What's the latest spec for [project]?" }` |
+| `ask_work_iq` | `{ "question": "Where is the API documentation for [service]?" }` |
+
+### Understand Priorities
+
+| Tool | Parameters |
+|------|------------|
+| `ask_work_iq` | `{ "question": "Based on discussions with my manager, what are my top priorities?" }` |
+| `ask_work_iq` | `{ "question": "What are the team's goals for this quarter?" }` |
+| `ask_work_iq` | `{ "question": "What's blocking the release?" }` |
 
 ## Output Rules
 
 - Answer first, context second
-- Short sentences (under 12 words where possible)
+- Preserve structured data (tables, metrics, lists) as returned
+- If WorkIQ returns nothing: say "WorkIQ returned no data for that query" — don't pad
 - No hedging (might, possibly, seems like)
-- No corporate filler
-- Contractions are fine
+- Short sentences where possible
+- Don't narrate the tool call — return the answer
