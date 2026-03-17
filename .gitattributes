@@ -1,0 +1,12 @@
+# Default: normalize line endings to LF on commit
+* text=auto eol=lf
+
+# Shell scripts must always be LF (CRLF breaks them on Mac/Linux)
+*.sh text eol=lf
+*.ps1 text eol=crlf
+
+# Markdown and text files
+*.md text eol=lf
+*.json text eol=lf
+*.cjs text eol=lf
+*.template text eol=lf

@@ -1,0 +1,52 @@
+# Voice Quick Reference
+
+Daily-use guide for drafting in {{YOUR_NAME}}'s voice. Load this before writing any email, message, or update.
+
+---
+
+## Core Patterns
+
+**Structure**: {{STRUCTURE_NOTES}}
+
+**Tone register**: {{TONE_NOTES}}
+
+**Openers**: {{OPENER_STYLE}}
+
+**Closes**: {{CLOSE_STYLE}}
+
+---
+
+## Contrast: Default vs. Your Voice
+
+| Default AI | {{YOUR_NAME}}'s Voice |
+|---|---|
+| Segmented sections | {{YOUR_PREFERENCE}} |
+| Verbatim block quotes | {{YOUR_PREFERENCE}} |
+| Transactional closer | {{YOUR_PREFERENCE}} |
+| Cooler, report-like | {{YOUR_PREFERENCE}} |
+
+---
+
+## Calibration Example
+
+**Situation**: [Describe a real communication situation]
+
+**Default draft (too generic):**
+> [Paste an example of generic AI output here]
+
+**{{YOUR_NAME}}'s actual version:**
+> [Paste your edited version here]
+
+**What changed and why:**
+1. [Explain change 1]
+2. [Explain change 2]
+
+---
+
+## Deep Reference
+
+| Need | File |
+|------|------|
+| Email examples | `voice-samples/email-examples.md` |
+| Message patterns | `voice-samples/message-examples.md` |
+| Full style guide | `voice-guide.md` |

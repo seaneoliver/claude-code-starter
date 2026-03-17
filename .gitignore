@@ -1,0 +1,20 @@
+# Generated personal config files (never commit these)
+.env.local
+.env.*.local
+
+# Personal contacts (private)
+contacts.jsonl
+network/
+
+# Generated from templates by setup.sh
+generated/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if running scripts locally)
+node_modules/
+
+# Editor
+.vscode/settings.json

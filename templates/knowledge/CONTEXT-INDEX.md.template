@@ -1,0 +1,61 @@
+# Context Index
+
+Navigation hub for Claude to load relevant context by task type. Each section points to knowledge files with @import syntax.
+
+---
+
+## Writing & Communication
+
+**When drafting any communication:**
+@voice-quick.md
+
+**For deep voice reference (LinkedIn patterns, full examples):**
+See `voice-guide.md` (load on demand)
+
+---
+
+## Contact Lookup & Relationship Management
+
+**When looking up a contact, preparing for a meeting, or managing relationships:**
+Use the `digital-brain` skill — contacts live in `~/.claude/skills/digital-brain/network/contacts.jsonl`
+
+**When looking up org structure or terminology:**
+See `org-context.md` (create this with your own org info)
+
+---
+
+## Goals & Priorities
+
+**When aligning work to goals or determining priority:**
+See `GOALS.md`
+
+---
+
+## System & Meta
+
+**When working on the continuous learning system (CLAUDE.md, skills, MEMORY.md):**
+See `continuous-learning-system.md` (optional — see modules/obsidian/ for template)
+
+---
+
+## Quick Reference
+
+| Task Type | Load First |
+|-----------|------------|
+| Email draft | voice-quick.md |
+| Status update | voice-quick.md |
+| New person/term | org-context.md or digital-brain contacts.jsonl |
+| Career discussion | your self-promotion framework |
+| Contact lookup / meeting prep | digital-brain skill |
+| Fixing skills/CLAUDE.md | continuous-learning-system.md |
+
+---
+
+## Knowledge Files to Create
+
+| File | Purpose | Status |
+|------|---------|--------|
+| `voice-quick.md` | Daily-use writing patterns | EXISTS (from setup) |
+| `voice-guide.md` | Full voice reference | EXISTS (from setup) |
+| `org-context.md` | Org terminology, key people | NOT YET CREATED |
+| `GOALS.md` | Goals and priorities | NOT YET CREATED |

@@ -1,0 +1,79 @@
+# {{YOUR_NAME}} - Claude Code (Global)
+
+> **Update protocol:** When you discover something new, edit the relevant file immediately.
+
+## Platform
+
+{{PLATFORM_NOTES}}
+
+## General Rules
+
+When I interrupt or say 'stop', immediately halt the current approach. Do not retry the same approach. Ask me what to do differently or propose a fundamentally different strategy.
+
+## File Handling
+
+When I paste content or reference a file, READ the actual file from disk rather than interpreting the pasted text as the complete source. Never assume gaps or fabricate missing content — always verify against the full file.
+
+## Communication & Intent
+
+When I say 'log' or 'save' something, just do it — don't draft a reply, don't reinterpret the intent. Log means append to the appropriate file. Match my writing voice/tone from existing documents.
+
+## Behavioral Rules
+
+- **Planning first**: For any non-trivial task (3+ steps or significant decisions), write a plan before executing. Gather requirements upfront. If something goes sideways mid-task, stop and re-plan.
+- **Verification before done**: Never declare a task complete without confirming the output is correct.
+- **Direct interaction**: Batch questions, offer best-guess suggestions with confirmation
+- **Context loading**: Scan for `CONTEXT-INDEX.md` in Knowledge/ before substantive work
+- **File operations**: Check if similar folders/files exist before creating new ones
+- **Scope discipline**: Only do what is asked. "Yes" confirms specific thing, not license for extra work
+- **Simplicity first**: Make every change as simple as possible. Minimal footprint.
+- **No laziness**: Find root causes. No temporary workarounds that defer the real problem.
+- **No em dashes**: Use commas, semicolons, or separate sentences instead
+- **Model tier nudge**: If the task doesn't match the active model, say so once briefly.
+
+## Subagent Strategy
+
+- Use subagents to keep the main context window clean on complex, multi-part tasks
+- Offload research, exploration, and parallel analysis to subagents rather than doing it inline
+- One task per subagent for focused execution
+- For complex problems, throw more compute at it; subagents are cheap relative to a blown context window
+
+## Self-Improvement Loop
+
+**At session start**: Review the Learnings below for patterns relevant to the current task before diving in.
+
+**When corrected**, immediately:
+1. Acknowledge the correction
+2. Determine root cause (wrong assumption? missing context?)
+3. Write new rule to appropriate file
+4. Confirm what you wrote and where
+
+## Skills & Commands
+
+- **learn**: Capture mistakes to CLAUDE.md rolling window
+- **learn-from-mistake**: 4-step loop for turning corrections into rules
+- **dayplan**: Daily planning from backlog + calendar
+- **done**: Session wrap-up and capture
+- **napkin**: Raw in-session correction log
+- **communication-patterns**: Stakeholder messaging frameworks
+- **workiq**: Example MCP integration pattern (requires Microsoft 365 / WorkIQ access)
+
+## Plan Mode
+
+BIG/SMALL question first. Review across: Architecture → Code Quality → Tests → Performance. For each issue: concrete description, 2-3 options, opinionated recommendation, numbered/lettered. Pause after each section.
+
+Full protocol: `~/.claude/rules/plan-mode.md`
+
+## Quote Verification
+
+Before quoting any source, confirm verbatim. If paraphrase, flag it. If not found, mark NOT FOUND. Format: Quote / Status (VERIFIED|PARAPHRASE|NOT FOUND) / Location.
+
+## API Keys
+
+**NEVER** reference or output API keys from environment files.
+
+## Continuous Learning
+
+Key learned patterns (last 5):
+<!-- Add entries here as you learn them. Format: -->
+<!-- - **Title** [YYYY-MM-DD]: Rule. Why. Context. -->
