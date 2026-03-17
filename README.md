@@ -23,28 +23,43 @@ Clone it, run `setup.sh`, answer a few questions, and get a working Claude Code 
 
 ### Prerequisites
 
-- [Claude Code](https://claude.ai/code) installed
+- [Claude Code](https://claude.ai/code) installed (CLI or VS Code extension — both work)
 - Bash (Mac/Linux) or PowerShell (Windows)
 - Node.js (for validation scripts)
 
-### 3 Steps
+### Mac / Linux
 
 ```bash
-# 1. Clone
 git clone https://github.com/oliversean_microsoft/claude-code-starter
 cd claude-code-starter
-
-# 2. Run setup
-./setup.sh          # Mac/Linux
-# OR
-.\setup.ps1         # Windows PowerShell
-
-# 3. Open a new Claude Code session
+./setup.sh
 ```
+
+### Windows (PowerShell)
+
+```powershell
+git clone https://github.com/oliversean_microsoft/claude-code-starter
+cd claude-code-starter
+.\setup.ps1
+```
+
+### Windows (Git Bash / WSL)
+
+```bash
+git clone https://github.com/oliversean_microsoft/claude-code-starter
+cd claude-code-starter
+./setup.sh
+```
+
+After setup, open a **new** Claude Code session (terminal or VS Code) to pick up the config.
+
+### VS Code users
+
+Works out of the box. Claude Code reads `~/.claude/` regardless of whether you're using the VS Code extension or the terminal. Run the setup script from any terminal inside VS Code, then reload your Claude Code session.
 
 The setup script will ask for:
 - Your name, role, and team
-- Your platform (Mac/Windows/Linux)
+- Your platform notes (e.g., "Mac" or "Windows — use PowerShell-compatible commands")
 - A brief description of your writing voice
 - (Optional) Obsidian vault path
 - (Optional) WorkIQ skill (Microsoft 365 only)
