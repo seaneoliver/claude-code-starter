@@ -56,7 +56,11 @@ echo ""
 
 prompt YOUR_NAME "Your full name (e.g., Alex Chen)"
 prompt YOUR_ROLE "Your role/title (e.g., Senior Software Engineer)"
+prompt YOUR_COMPANY "Your company or organization (e.g., Acme Corp)" "My Company"
 prompt YOUR_TEAM "Your team/org name (e.g., Platform Engineering)"
+prompt YOUR_LEVEL "Your level or seniority (e.g., Senior, IC4, L5, Staff)" "Senior"
+prompt YOUR_NEXT_LEVEL "Your target next level (e.g., Staff, IC5, Principal)" "Staff"
+prompt YOUR_MANAGER "Your manager's first name (e.g., Sam)" "My Manager"
 prompt PLATFORM_NOTES "Platform notes (e.g., 'Mac environment' or 'Windows — use PowerShell-compatible commands')" "Mac environment"
 
 echo ""
@@ -95,7 +99,11 @@ apply_template() {
   sed \
     -e "s/{{YOUR_NAME}}/${YOUR_NAME}/g" \
     -e "s/{{YOUR_ROLE}}/${YOUR_ROLE}/g" \
+    -e "s/{{YOUR_COMPANY}}/${YOUR_COMPANY}/g" \
     -e "s/{{YOUR_TEAM}}/${YOUR_TEAM}/g" \
+    -e "s/{{YOUR_LEVEL}}/${YOUR_LEVEL}/g" \
+    -e "s/{{YOUR_NEXT_LEVEL}}/${YOUR_NEXT_LEVEL}/g" \
+    -e "s/{{YOUR_MANAGER}}/${YOUR_MANAGER}/g" \
     -e "s/{{PLATFORM_NOTES}}/${PLATFORM_NOTES}/g" \
     -e "s/{{WRITING_PHILOSOPHY}}/${WRITING_VOICE}/g" \
     -e "s/{{SETUP_DATE}}/${TODAY}/g" \
@@ -177,8 +185,17 @@ for skill_dir in "${SCRIPT_DIR}/.claude/skills/"*/; do
     echo -e "  ${YELLOW}Skipped:${NC} skill: workiq (not selected)"
     continue
   fi
-  mkdir -p "${CLAUDE_DIR}/skills/${skill_name}"
-  cp "${skill_dir}SKILL.md" "${CLAUDE_DIR}/skills/${skill_name}/SKILL.md"
+  # Copy full skill directory with template substitution for .md files
+  while IFS= read -r -d '' src; do
+    relative="${src#${skill_dir}}"
+    dest="${CLAUDE_DIR}/skills/${skill_name}/${relative}"
+    mkdir -p "$(dirname "$dest")"
+    if [[ "$src" == *.md ]]; then
+      apply_template "$src" "$dest"
+    else
+      cp "$src" "$dest"
+    fi
+  done < <(find "$skill_dir" -type f -print0)
   echo -e "  ${GREEN}Installed:${NC} skill: ${skill_name}"
 done
 

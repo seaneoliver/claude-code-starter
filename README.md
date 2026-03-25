@@ -58,7 +58,7 @@ After setup, open a **new** Claude Code session (terminal or VS Code) to pick up
 Works out of the box. Claude Code reads `~/.claude/` regardless of whether you're using the VS Code extension or the terminal. Run the setup script from any terminal inside VS Code, then reload your Claude Code session.
 
 The setup script will ask for:
-- Your name, role, and team
+- Your name, role, company, team, level, and manager's name
 - Your platform notes (e.g., "Mac" or "Windows — use PowerShell-compatible commands")
 - A brief description of your writing voice
 - (Optional) Obsidian vault path
@@ -88,6 +88,11 @@ The setup script will ask for:
 | `done` | Session wrap-up: capture decisions, follow-ups, files changed |
 | `napkin` | In-session mistake log; persists across sessions in `.claude/napkin.md` |
 | `communication-patterns` | Stakeholder messaging frameworks for difficult conversations |
+| `career-coach` | Career development coaching, promotion readiness, and strategic decisions. Uses Microsoft IC4/IC5 framework — best for Microsoft employees. |
+| `decision-framework` | Structure complex decisions using RAPID roles, 6-step analysis, and risk assessment |
+| `note-processor` | Transform messy meeting notes or voice transcripts into clean, action-first summaries with Obsidian wikilinks |
+| `write-like-me` | Draft emails and Teams messages in your voice. Fill in `voice-guide.md` after setup for best results. |
+| `fact-checker` | Verify claims, statistics, and sources before publishing |
 | `workiq` *(optional)* | Example MCP integration — Microsoft 365 WorkIQ (requires M365 access) |
 
 ---
@@ -160,7 +165,12 @@ claude-code-starter/
 │       ├── done/
 │       ├── napkin/
 │       ├── communication-patterns/
-│       └── workiq/
+│       ├── career-coach/          # Microsoft IC4/IC5 career coaching
+│       ├── decision-framework/    # RAPID + 6-step decision analysis
+│       ├── note-processor/        # Meeting notes → actionable summaries
+│       ├── write-like-me/         # Emails/messages in your voice
+│       ├── fact-checker/          # Claim verification before publishing
+│       └── workiq/                # Optional: Microsoft 365 integration
 ├── modules/
 │   └── obsidian/               # Optional vault integration
 │       ├── README.md
