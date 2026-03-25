@@ -88,7 +88,7 @@ The setup script will ask for:
 | `done` | Session wrap-up: capture decisions, follow-ups, files changed |
 | `napkin` | In-session mistake log; persists across sessions in `.claude/napkin.md` |
 | `communication-patterns` | Stakeholder messaging frameworks for difficult conversations |
-| `career-coach` | Career development coaching, promotion readiness, and strategic decisions. Uses Microsoft IC4/IC5 framework — best for Microsoft employees. |
+| `career-coach` | Career development coaching, promotion readiness, and strategic decisions. Adapts to your level and target level via setup. |
 | `decision-framework` | Structure complex decisions using RAPID roles, 6-step analysis, and risk assessment |
 | `note-processor` | Transform messy meeting notes or voice transcripts into clean, action-first summaries with Obsidian wikilinks |
 | `write-like-me` | Draft emails and Teams messages in your voice. Fill in `voice-guide.md` after setup for best results. |
@@ -165,7 +165,7 @@ claude-code-starter/
 │       ├── done/
 │       ├── napkin/
 │       ├── communication-patterns/
-│       ├── career-coach/          # Microsoft IC4/IC5 career coaching
+│       ├── career-coach/          # Career coaching (level-agnostic)
 │       ├── decision-framework/    # RAPID + 6-step decision analysis
 │       ├── note-processor/        # Meeting notes → actionable summaries
 │       ├── write-like-me/         # Emails/messages in your voice
